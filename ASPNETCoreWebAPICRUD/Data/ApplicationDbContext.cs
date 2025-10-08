@@ -31,7 +31,8 @@ namespace ASPNETCoreWebAPICRUD.Data
                 entity.Property(course => course.Name)
                     .HasColumnName("name")
                     .HasColumnType("VARCHAR(6)")
-                    .HasColumnOrder(1);
+                    .HasColumnOrder(1)
+                    .IsRequired();
 
                 // Course and Subject entity relationship
                 entity
