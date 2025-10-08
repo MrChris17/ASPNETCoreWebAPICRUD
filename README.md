@@ -5,6 +5,7 @@ This repository is my self-study drafts in .NET Core development.
 ## Technology Used:
 - C#
 - ASP.NET Core Web API
+- Logging
 - Entity Framework Core (ORM)
 - FluentAPI
 - PostgreSQL
