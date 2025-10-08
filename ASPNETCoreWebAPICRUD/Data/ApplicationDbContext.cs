@@ -9,6 +9,7 @@ namespace ASPNETCoreWebAPICRUD.Data
 
         public DbSet<Course> Course { get; set; }
         public DbSet<Subject> Subject { get; set; }
+        public DbSet<Student> Student { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -84,6 +85,49 @@ namespace ASPNETCoreWebAPICRUD.Data
                     .UsingEntity<StudentSubject>(
                         join => join.HasOne<Student>().WithMany().HasForeignKey(student => student.StudentId).IsRequired(),
                         join => join.HasOne<Subject>().WithMany().HasForeignKey(subject => subject.SubjectId).IsRequired());
+            });
+
+            // Student Entity
+            modelBuilder.Entity<Student>(entity =>
+            {
+                // Set table name to tbl_subject for Student entity
+                entity.ToTable("tbl_student")
+                    .HasKey(student => student.Id); // Set Id column as a primary key
+
+                // Id column property
+                entity.Property(student => student.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("INT")
+                    .UseIdentityAlwaysColumn()
+                    .HasColumnOrder(0);
+
+                // Name column property
+                entity.Property(student => student.Name)
+                    .HasColumnName("name")
+                    .HasColumnType("VARCHAR(70)")
+                    .HasColumnOrder(1)
+                    .IsRequired();
+
+                // Address column property
+                entity.Property(student => student.Address)
+                    .HasColumnName("address")
+                    .HasColumnType("VARCHAR(250)")
+                    .HasColumnOrder(2)
+                    .IsRequired();
+
+                // Email Address column property
+                entity.Property(student => student.EmailAddress)
+                    .HasColumnName("email_address")
+                    .HasColumnType("VARCHAR(100)")
+                    .HasColumnOrder(3)
+                    .IsRequired();
+
+                // Phone Number column property
+                entity.Property(student => student.PhoneNumber)
+                    .HasColumnName("phone_number")
+                    .HasColumnType("VARCHAR(11)")
+                    .HasColumnOrder(4)
+                    .IsRequired();
             });
         }
     }
