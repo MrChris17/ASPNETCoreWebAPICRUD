@@ -8,6 +8,7 @@ namespace ASPNETCoreWebAPICRUD.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<Course> Course { get; set; }
+        public DbSet<Subject> Subject { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
