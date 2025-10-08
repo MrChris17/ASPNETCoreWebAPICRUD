@@ -90,7 +90,7 @@ namespace ASPNETCoreWebAPICRUD.Data
             // Student Entity
             modelBuilder.Entity<Student>(entity =>
             {
-                // Set table name to tbl_subject for Student entity
+                // Set table name to tbl_student for Student entity
                 entity.ToTable("tbl_student")
                     .HasKey(student => student.Id); // Set Id column as a primary key
 
@@ -127,6 +127,25 @@ namespace ASPNETCoreWebAPICRUD.Data
                     .HasColumnName("phone_number")
                     .HasColumnType("VARCHAR(11)")
                     .HasColumnOrder(4)
+                    .IsRequired();
+            });
+
+            // Student Subject Entity (Join Table)
+            modelBuilder.Entity<StudentSubject>(entity =>
+            {
+                // Set table name to tbl_student_subject for Student Subject entity
+                entity.ToTable("tbl_student_subject");
+
+                // Student Id column property
+                entity.Property(student_subject => student_subject.StudentId)
+                    .HasColumnName("student_id")
+                    .HasColumnType("INT")
+                    .IsRequired();
+
+                // Subject Id column property
+                entity.Property(student_subject => student_subject.SubjectId)
+                    .HasColumnName("subject_id")
+                    .HasColumnType("INT")
                     .IsRequired();
             });
         }
